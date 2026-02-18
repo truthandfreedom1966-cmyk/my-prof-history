@@ -891,10 +891,15 @@
                                 setUserLocation(pos);
                                 setGpsActive(true);
                                 
-                                if (map && !manualZoom) {
+                                if (map && !manualZoom && !activeRoute) {
+                                    // First GPS lock AND no active route: auto-zoom
                                     map.setView([pos.lat, pos.lng], 15);
-                                } else if (map && manualZoom) {
+                                } else if (map && manualZoom && !activeRoute) {
+                                    // User has zoomed manually AND no active route: only pan, keep zoom level
                                     map.panTo([pos.lat, pos.lng]);
+                                } else if (map && activeRoute) {
+                                    // Route is active: DON'T move map, just update marker position
+                                    // User wants to see the whole route!
                                 }
                                 
                                 if (map) {
@@ -1056,7 +1061,11 @@
                         const route = data.routes[0];
                         const coordinates = route.geometry.coordinates.map(coord => [coord[1], coord[0]]);
                         const distance = route.distance;
-                        const duration = route.duration;
+                        
+                        // IMPORTANT: OSRM returns driving duration which is too fast!
+                        // Recalculate for walking: average speed 5 km/h
+                        const walkingSpeedKmH = 5.0;
+                        const durationMinutes = Math.round((distance / 1000) / walkingSpeedKmH * 60);
                         
                         // Remove old route if exists
                         if (routeLayerRef.current) {
@@ -1079,7 +1088,7 @@
                         // Set route info
                         setActiveRoute({
                             distance: Math.round(distance),
-                            duration: Math.round(duration / 60),
+                            duration: durationMinutes,
                             coordinates: coordinates
                         });
                     } else {
