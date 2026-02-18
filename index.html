@@ -796,6 +796,7 @@
             const [showLayersPanel, setShowLayersPanel] = useState(false);
             const [activeRoute, setActiveRoute] = useState(null);
             const [routeLoading, setRouteLoading] = useState(false);
+            const [firstGPSLock, setFirstGPSLock] = useState(false);
             
             const audioRef = useRef(null);
             const mapRef = useRef(null);
@@ -891,16 +892,12 @@
                                 setUserLocation(pos);
                                 setGpsActive(true);
                                 
-                                if (map && !manualZoom && !activeRoute) {
-                                    // First GPS lock AND no active route: auto-zoom
+                                // Only auto-center on FIRST GPS lock
+                                if (map && !firstGPSLock) {
                                     map.setView([pos.lat, pos.lng], 15);
-                                } else if (map && manualZoom && !activeRoute) {
-                                    // User has zoomed manually AND no active route: only pan, keep zoom level
-                                    map.panTo([pos.lat, pos.lng]);
-                                } else if (map && activeRoute) {
-                                    // Route is active: DON'T move map, just update marker position
-                                    // User wants to see the whole route!
+                                    setFirstGPSLock(true);
                                 }
+                                // After first lock: NEVER auto-move map, only update marker
                                 
                                 if (map) {
                                     if (userMarkerRef.current) {
@@ -952,6 +949,7 @@
                     }
                     setGpsActive(false);
                     setUserLocation(null);
+                    setFirstGPSLock(false); // Reset on GPS disable
                 }
             };
             
@@ -1035,6 +1033,8 @@
             const centerOnUser = () => {
                 if (map && userLocation) {
                     map.setView([userLocation.lat, userLocation.lng], 16);
+                    // Allow re-centering again if user clicks the button
+                    setFirstGPSLock(true);
                 }
             };
             
