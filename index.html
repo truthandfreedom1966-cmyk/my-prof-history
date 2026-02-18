@@ -1046,18 +1046,17 @@
                 setRouteLoading(true);
                 
                 try {
-                    // OpenRouteService API (free tier: 2000 requests/day)
-                    const apiKey = '5b3ce3597851110001cf6248a1b0a0f7e74f4fbfb0e58f8c8e0e3e3c';
-                    const url = `https://api.openrouteservice.org/v2/directions/foot-walking?api_key=${apiKey}&start=${userLocation.lng},${userLocation.lat}&end=${destination.lng},${destination.lat}`;
+                    // OSRM - Open Source Routing Machine (completely free, no API key!)
+                    const url = `https://router.project-osrm.org/route/v1/foot/${userLocation.lng},${userLocation.lat};${destination.lng},${destination.lat}?overview=full&geometries=geojson`;
                     
                     const response = await fetch(url);
                     const data = await response.json();
                     
-                    if (data.features && data.features[0]) {
-                        const route = data.features[0];
+                    if (data.code === 'Ok' && data.routes && data.routes[0]) {
+                        const route = data.routes[0];
                         const coordinates = route.geometry.coordinates.map(coord => [coord[1], coord[0]]);
-                        const distance = route.properties.segments[0].distance;
-                        const duration = route.properties.segments[0].duration;
+                        const distance = route.distance;
+                        const duration = route.duration;
                         
                         // Remove old route if exists
                         if (routeLayerRef.current) {
@@ -1068,7 +1067,8 @@
                         const routeLayer = L.polyline(coordinates, {
                             color: '#4285f4',
                             weight: 5,
-                            opacity: 0.7
+                            opacity: 0.7,
+                            lineJoin: 'round'
                         }).addTo(map);
                         
                         routeLayerRef.current = routeLayer;
@@ -1082,6 +1082,8 @@
                             duration: Math.round(duration / 60),
                             coordinates: coordinates
                         });
+                    } else {
+                        throw new Error('Route not found');
                     }
                 } catch (error) {
                     console.error('Routing error:', error);
