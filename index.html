@@ -440,6 +440,36 @@
             50% { opacity: 0.7; }
         }
         
+        /* Debug Panel */
+        .debug-panel {
+            position: fixed;
+            bottom: 80px;
+            left: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #f39c12;
+            border-radius: 8px;
+            padding: 10px;
+            max-height: 150px;
+            overflow-y: auto;
+            z-index: 10000;
+            font-family: monospace;
+            font-size: 0.75rem;
+        }
+        
+        .debug-log-entry {
+            color: #f39c12;
+            margin: 3px 0;
+            padding: 2px 0;
+            border-bottom: 1px solid rgba(243, 156, 18, 0.2);
+        }
+        
+        .debug-panel h3 {
+            color: #e67e22;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+        }
+        
         /* GPS Button */
         .gps-button {
             position: absolute;
@@ -797,6 +827,7 @@
             const [activeRoute, setActiveRoute] = useState(null);
             const [routeLoading, setRouteLoading] = useState(false);
             const [firstGPSLock, setFirstGPSLock] = useState(false);
+            const [debugLog, setDebugLog] = useState([]);
             
             const audioRef = useRef(null);
             const mapRef = useRef(null);
@@ -807,12 +838,22 @@
             const routeLayerRef = useRef(null);
             const accuracyCirclesRef = useRef([]);
             
+            // Debug helper
+            const addDebugLog = (message) => {
+                const timestamp = new Date().toLocaleTimeString();
+                setDebugLog(prev => [...prev.slice(-4), `${timestamp}: ${message}`]);
+            };
+            
             // Initialize Map
             useEffect(() => {
                 const mapInstance = L.map(mapRef.current, {
                     center: [50.1109, 8.6821],
                     zoom: 14,
-                    zoomControl: false
+                    zoomControl: false,
+                    trackResize: true,
+                    // Disable automatic panning
+                    autoPan: false,
+                    autoPanOnFocus: false
                 });
                 
                 // Add zoom control on the right
@@ -829,9 +870,21 @@
                 tileLayerRef.current = tileLayer;
                 setMap(mapInstance);
                 
+                // DEBUG: Track when map moves
+                mapInstance.on('movestart', (e) => {
+                    addDebugLog('🗺️ Map MOVE started');
+                });
+                
+                mapInstance.on('moveend', (e) => {
+                    const center = mapInstance.getCenter();
+                    const zoom = mapInstance.getZoom();
+                    addDebugLog(`📍 Map moved to: ${center.lat.toFixed(4)}, ${center.lng.toFixed(4)} (zoom: ${zoom})`);
+                });
+                
                 // Detect manual zoom
                 mapInstance.on('zoomstart', () => {
                     setManualZoom(true);
+                    addDebugLog('🔍 User zoomed manually');
                 });
                 
                 // Add markers
@@ -915,7 +968,8 @@
                                 
                                 const userMarker = L.marker([pos.lat, pos.lng], {
                                     icon: userIcon,
-                                    zIndexOffset: 1000
+                                    zIndexOffset: 1000,
+                                    autoPan: false // Don't auto-pan to this marker
                                 }).addTo(map);
                                 
                                 // Add accuracy circle
@@ -935,6 +989,9 @@
                                 if (!firstGPSLock) {
                                     map.setView([pos.lat, pos.lng], 15);
                                     setFirstGPSLock(true);
+                                    addDebugLog('🎯 First GPS lock - centered map');
+                                } else {
+                                    addDebugLog('📡 GPS update - NO map movement');
                                 }
                                 // All subsequent GPS updates: NO map movement whatsoever!
                                 
@@ -1095,6 +1152,7 @@
                         
                         // Fit map to show entire route
                         map.fitBounds(routeLayer.getBounds(), { padding: [50, 50] });
+                        addDebugLog('🗺️ Route calculated - map fitted to bounds');
                         
                         // Set route info
                         setActiveRoute({
@@ -1244,6 +1302,16 @@
                                         onEnded={() => setIsPlaying(false)}
                                     />
                                 </div>
+                            </div>
+                        )}
+                        
+                        {/* Debug Panel */}
+                        {debugLog.length > 0 && (
+                            <div className="debug-panel">
+                                <h3>🐛 Debug Log:</h3>
+                                {debugLog.map((log, index) => (
+                                    <div key={index} className="debug-log-entry">{log}</div>
+                                ))}
                             </div>
                         )}
                     </div>
