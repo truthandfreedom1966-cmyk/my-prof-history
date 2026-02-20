@@ -870,21 +870,25 @@
                 tileLayerRef.current = tileLayer;
                 setMap(mapInstance);
                 
-                // DEBUG: Track when map moves
-                mapInstance.on('movestart', (e) => {
-                    addDebugLog('🗺️ Map MOVE started');
+                // DEBUG: Track when map is DRAGGED (not zoomed)
+                mapInstance.on('dragstart', (e) => {
+                    addDebugLog('🗺️ Map DRAG started (user moved map)');
                 });
                 
-                mapInstance.on('moveend', (e) => {
+                mapInstance.on('dragend', (e) => {
                     const center = mapInstance.getCenter();
                     const zoom = mapInstance.getZoom();
-                    addDebugLog(`📍 Map moved to: ${center.lat.toFixed(4)}, ${center.lng.toFixed(4)} (zoom: ${zoom})`);
+                    addDebugLog(`📍 Map dragged to: ${center.lat.toFixed(4)}, ${center.lng.toFixed(4)}`);
                 });
                 
                 // Detect manual zoom
                 mapInstance.on('zoomstart', () => {
+                    addDebugLog('🔍 Zoom started');
+                });
+                
+                mapInstance.on('zoomend', () => {
                     setManualZoom(true);
-                    addDebugLog('🔍 User zoomed manually');
+                    addDebugLog('🔍 Zoom ended - manual zoom detected');
                 });
                 
                 // Add markers
@@ -987,11 +991,12 @@
                                 
                                 // ONLY center map on VERY FIRST GPS lock, then NEVER again!
                                 if (!firstGPSLock) {
+                                    addDebugLog('⚠️ CALLING setView - First GPS lock');
                                     map.setView([pos.lat, pos.lng], 15);
                                     setFirstGPSLock(true);
                                     addDebugLog('🎯 First GPS lock - centered map');
                                 } else {
-                                    addDebugLog('📡 GPS update - NO map movement');
+                                    addDebugLog('✅ GPS update - NO setView called');
                                 }
                                 // All subsequent GPS updates: NO map movement whatsoever!
                                 
@@ -1100,9 +1105,11 @@
             
             const centerOnUser = () => {
                 if (map && userLocation) {
+                    addDebugLog('⚠️ CALLING setView - Center button clicked');
                     map.setView([userLocation.lat, userLocation.lng], 16);
                     // Allow re-centering again if user clicks the button
                     setFirstGPSLock(true);
+                    addDebugLog('📍 Centered on user location');
                 }
             };
             
@@ -1151,6 +1158,7 @@
                         routeLayerRef.current = routeLayer;
                         
                         // Fit map to show entire route
+                        addDebugLog('⚠️ CALLING fitBounds - showing route');
                         map.fitBounds(routeLayer.getBounds(), { padding: [50, 50] });
                         addDebugLog('🗺️ Route calculated - map fitted to bounds');
                         
@@ -1308,18 +1316,4 @@
                         {/* Debug Panel */}
                         {debugLog.length > 0 && (
                             <div className="debug-panel">
-                                <h3>🐛 Debug Log:</h3>
-                                {debugLog.map((log, index) => (
-                                    <div key={index} className="debug-log-entry">{log}</div>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-                </React.Fragment>
-            );
-        }
-        
-        ReactDOM.render(<App />, document.getElementById('root'));
-    </script>
-</body>
-</html>
+                   
