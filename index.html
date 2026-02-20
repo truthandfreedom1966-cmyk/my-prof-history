@@ -1074,21 +1074,6 @@
                 });
             };
             
-            const calculateDistance = (lat1, lon1, lat2, lon2) => {
-                const R = 6371e3;
-                const φ1 = lat1 * Math.PI / 180;
-                const φ2 = lat2 * Math.PI / 180;
-                const Δφ = (lat2 - lat1) * Math.PI / 180;
-                const Δλ = (lon2 - lon1) * Math.PI / 180;
-                
-                const a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
-                         Math.cos(φ1) * Math.cos(φ2) *
-                         Math.sin(Δλ/2) * Math.sin(Δλ/2);
-                const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-                
-                return R * c;
-            };
-            
             const togglePlay = () => {
                 if (!audioRef.current) return;
                 
@@ -1138,6 +1123,22 @@
                 if (map && userLocation) {
                     map.setView([userLocation.lat, userLocation.lng], 16);
                 }
+            };
+            
+            // Helper function - calculate distance between two points
+            const calculateDistance = (lat1, lon1, lat2, lon2) => {
+                const R = 6371e3;
+                const φ1 = lat1 * Math.PI / 180;
+                const φ2 = lat2 * Math.PI / 180;
+                const Δφ = (lat2 - lat1) * Math.PI / 180;
+                const Δλ = (lon2 - lon1) * Math.PI / 180;
+                
+                const a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+                         Math.cos(φ1) * Math.cos(φ2) *
+                         Math.sin(Δλ/2) * Math.sin(Δλ/2);
+                const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+                
+                return R * c;
             };
             
             // Tour Generator Functions
@@ -1298,4 +1299,115 @@
                                         <button className="play-button" onClick={togglePlay}>
                                             {isPlaying ? '⏸' : '▶'}
                                         </button>
-             
+                                    </div>
+                                    
+                                    <div className="audio-footer">
+                                        <div className="progress-bar" onClick={handleProgressClick}>
+                                            <div 
+                                                className="progress-fill" 
+                                                style={{width: `${(currentTime / duration) * 100 || 0}%`}}
+                                            ></div>
+                                        </div>
+                                        <div className="time-display">
+                                            <span>{formatTime(currentTime)}</span>
+                                            <span>{formatTime(duration)}</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <audio
+                                        ref={audioRef}
+                                        src={selectedLocation.audio}
+                                        onTimeUpdate={handleTimeUpdate}
+                                        onLoadedMetadata={handleLoadedMetadata}
+                                        onEnded={() => setIsPlaying(false)}
+                                    />
+                                </div>
+                            </div>
+                        )}
+                        
+                        {/* Tour Generator Button */}
+                        {!activeTour && !selectedLocation && (
+                            <button className="tour-button" onClick={() => setShowTourModal(true)}>
+                                🎭 Tour erstellen
+                            </button>
+                        )}
+                        
+                        {/* Active Tour Info */}
+                        {activeTour && (
+                            <div className="active-tour-info">
+                                <div className="tour-progress">
+                                    Stop {currentStopIndex + 1} von {activeTour.locations.length}
+                                </div>
+                                <div style={{fontSize: '0.9rem', color: '#d4af37', marginBottom: '10px'}}>
+                                    {activeTour.locations[currentStopIndex]?.name}
+                                </div>
+                                <button className="tour-next-button" onClick={nextStop}>
+                                    {currentStopIndex < activeTour.locations.length - 1 ? '➡️ Nächster Stop' : '🎉 Tour beenden'}
+                                </button>
+                                <button className="tour-end-button" onClick={endTour}>
+                                    ❌ Abbrechen
+                                </button>
+                            </div>
+                        )}
+                        
+                        {/* Tour Modal */}
+                        {showTourModal && (
+                            <div className="tour-modal" onClick={() => setShowTourModal(false)}>
+                                <div className="tour-modal-content" onClick={(e) => e.stopPropagation()}>
+                                    <button className="tour-close-button" onClick={() => setShowTourModal(false)}>✕</button>
+                                    
+                                    <h2>🎭 Deine perfekte Tour</h2>
+                                    
+                                    <h3>⏱️ Wie viel Zeit hast du?</h3>
+                                    
+                                    <div className="tour-option" onClick={() => generateTour(60)}>
+                                        <div className="tour-option-icon">☕</div>
+                                        <div className="tour-option-text">
+                                            <div className="tour-option-title">1 Stunde</div>
+                                            <div className="tour-option-desc">3 Highlights • Kurzer Spaziergang</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="tour-option" onClick={() => generateTour(120)}>
+                                        <div className="tour-option-icon">🚶</div>
+                                        <div className="tour-option-text">
+                                            <div className="tour-option-title">2 Stunden</div>
+                                            <div className="tour-option-desc">5 Locations • Entspannte Tour</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="tour-option" onClick={() => generateTour(180)}>
+                                        <div className="tour-option-icon">🎯</div>
+                                        <div className="tour-option-text">
+                                            <div className="tour-option-title">3 Stunden</div>
+                                            <div className="tour-option-desc">7 Locations • Ausführliche Tour</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="tour-option" onClick={() => generateTour(300)}>
+                                        <div className="tour-option-icon">☀️</div>
+                                        <div className="tour-option-text">
+                                            <div className="tour-option-title">Halber Tag (4-5h)</div>
+                                            <div className="tour-option-desc">9 Locations • Fast alles sehen</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="tour-option" onClick={() => generateTour(480)}>
+                                        <div className="tour-option-icon">🌟</div>
+                                        <div className="tour-option-text">
+                                            <div className="tour-option-title">Ganzer Tag (6-8h)</div>
+                                            <div className="tour-option-desc">Alle 11 Locations • Komplette Tour</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </React.Fragment>
+            );
+        }
+        
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
