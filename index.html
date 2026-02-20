@@ -369,75 +369,229 @@
             box-shadow: 0 2px 10px rgba(243, 156, 18, 0.4);
         }
         
-        /* Route Button */
-        .route-button {
-            background: linear-gradient(135deg, #4285f4 0%, #3367d6 100%);
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        /* Tour Generator Button */
+        .tour-button {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #c9a961 0%, #d4af37 100%);
+            color: #1a0f0a;
+            padding: 15px 30px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+            font-size: 1.1rem;
+            font-weight: bold;
+            box-shadow: 0 6px 25px rgba(201, 169, 97, 0.5);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .tour-button:hover {
+            transform: translateX(-50%) translateY(-3px);
+            box-shadow: 0 8px 30px rgba(201, 169, 97, 0.7);
+        }
+        
+        .tour-button:active {
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        /* Tour Modal */
+        .tour-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            padding: 20px;
+        }
+        
+        .tour-modal-content {
+            background: linear-gradient(135deg, #2c1810 0%, #1a0f0a 100%);
+            border: 3px solid #c9a961;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+        }
+        
+        .tour-modal h2 {
+            color: #c9a961;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .tour-modal h3 {
+            color: #d4af37;
+            font-size: 1.1rem;
+            margin: 20px 0 10px 0;
+        }
+        
+        .tour-option {
+            background: rgba(201, 169, 97, 0.1);
+            border: 2px solid #c9a961;
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .tour-option:hover {
+            background: rgba(201, 169, 97, 0.2);
+            transform: translateX(5px);
+        }
+        
+        .tour-option.selected {
+            background: linear-gradient(135deg, #c9a961 0%, #d4af37 100%);
+            color: #1a0f0a;
+            font-weight: bold;
+        }
+        
+        .tour-option-icon {
+            font-size: 2rem;
+        }
+        
+        .tour-option-text {
+            flex: 1;
+        }
+        
+        .tour-option-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        
+        .tour-option-desc {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-top: 3px;
+        }
+        
+        .tour-start-button {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
             color: white;
-            padding: 12px 20px;
+            padding: 15px 30px;
             border-radius: 25px;
             border: none;
             cursor: pointer;
             font-family: 'Georgia', serif;
-            font-size: 0.9rem;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(66, 133, 244, 0.3);
+            font-size: 1.1rem;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 25px;
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin: 15px 0;
         }
         
-        .route-button:hover {
+        .tour-start-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(66, 133, 244, 0.4);
+            box-shadow: 0 6px 20px rgba(46, 204, 113, 0.6);
         }
         
-        .route-button:active {
-            transform: translateY(0);
-        }
-        
-        .route-button:disabled {
+        .tour-start-button:disabled {
             background: #ccc;
             cursor: not-allowed;
             transform: none;
         }
         
-        .route-info {
-            background: rgba(66, 133, 244, 0.1);
-            border: 2px solid #4285f4;
-            border-radius: 12px;
-            padding: 12px 15px;
-            margin: 15px 0;
+        .tour-close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(201, 169, 97, 0.2);
+            border: 2px solid #c9a961;
+            color: #c9a961;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-        }
-        
-        .route-info-text {
-            color: #4285f4;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-        
-        .clear-route-button {
-            background: rgba(244, 67, 54, 0.1);
-            border: 1px solid #f44336;
-            color: #f44336;
-            padding: 6px 12px;
-            border-radius: 15px;
-            cursor: pointer;
-            font-size: 0.8rem;
+            justify-content: center;
             transition: all 0.3s ease;
         }
         
-        .clear-route-button:hover {
-            background: rgba(244, 67, 54, 0.2);
+        .tour-close-button:hover {
+            background: rgba(201, 169, 97, 0.4);
+            transform: rotate(90deg);
         }
         
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+        /* Active Tour Display */
+        .active-tour-info {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #2c1810 0%, #1a0f0a 100%);
+            border: 3px solid #c9a961;
+            border-radius: 15px;
+            padding: 15px 25px;
+            z-index: 999;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.6);
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .tour-progress {
+            color: #c9a961;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .tour-next-button {
+            background: linear-gradient(135deg, #c9a961 0%, #d4af37 100%);
+            color: #1a0f0a;
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(201, 169, 97, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .tour-next-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .tour-end-button {
+            background: rgba(244, 67, 54, 0.2);
+            border: 2px solid #f44336;
+            color: #f44336;
+            padding: 8px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-left: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .tour-end-button:hover {
+            background: rgba(244, 67, 54, 0.3);
         }
         
         /* GPS Button */
@@ -498,59 +652,21 @@
             transform: scale(0.95);
         }
         
-        /* Layers Toggle Button */
-        .layers-button {
-            position: absolute;
-            top: 308px;
-            right: 10px;
-            width: 44px;
-            height: 44px;
-            background: rgba(44, 24, 16, 0.95);
-            border: 2px solid #c9a961;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            z-index: 998;
-            transition: all 0.3s ease;
-        }
-        
-        .layers-button:hover {
-            background: rgba(201, 169, 97, 0.3);
-        }
-        
-        .layers-button.active {
-            background: rgba(201, 169, 97, 0.4);
-        }
-        
         /* Map Style Switcher */
         .map-style-switcher {
             position: absolute;
-            top: 362px;
+            top: 308px;
             right: 10px;
-            background: rgba(44, 24, 16, 0.98);
+            background: rgba(44, 24, 16, 0.95);
             border: 2px solid #c9a961;
             border-radius: 8px;
-            padding: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-            z-index: 999;
+            padding: 6px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            z-index: 998;
             display: flex;
             flex-direction: column;
             gap: 6px;
             max-width: 150px;
-            opacity: 0;
-            transform: translateX(10px);
-            pointer-events: none;
-            transition: all 0.3s ease;
-        }
-        
-        .map-style-switcher.visible {
-            opacity: 1;
-            transform: translateX(0);
-            pointer-events: all;
         }
         
         .style-button {
@@ -627,18 +743,10 @@
                 font-size: 20px;
             }
             
-            .layers-button {
-                top: 286px;
-                right: 8px;
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
-            }
-            
             .map-style-switcher {
-                top: 332px;
+                top: 290px;
                 right: 8px;
-                padding: 6px;
+                padding: 5px;
                 gap: 5px;
                 max-width: 130px;
             }
@@ -793,9 +901,9 @@
             const [duration, setDuration] = useState(0);
             const [currentMapStyle, setCurrentMapStyle] = useState('standard');
             const [manualZoom, setManualZoom] = useState(false);
-            const [showLayersPanel, setShowLayersPanel] = useState(false);
-            const [activeRoute, setActiveRoute] = useState(null);
-            const [routeLoading, setRouteLoading] = useState(false);
+            const [showTourModal, setShowTourModal] = useState(false);
+            const [activeTour, setActiveTour] = useState(null);
+            const [currentStopIndex, setCurrentStopIndex] = useState(0);
             
             const audioRef = useRef(null);
             const mapRef = useRef(null);
@@ -803,8 +911,6 @@
             const watchIdRef = useRef(null);
             const tileLayerRef = useRef(null);
             const userMarkerRef = useRef(null);
-            const routeLayerRef = useRef(null);
-            const isRouteActiveRef = useRef(false);
             
             // Initialize Map
             useEffect(() => {
@@ -892,15 +998,11 @@
                                 setUserLocation(pos);
                                 setGpsActive(true);
                                 
-                                // Only move map if NO active route (using ref for immediate check)
-                                if (map && !isRouteActiveRef.current) {
-                                    if (!manualZoom) {
-                                        map.setView([pos.lat, pos.lng], 15);
-                                    } else {
-                                        map.panTo([pos.lat, pos.lng]);
-                                    }
+                                if (map && !manualZoom) {
+                                    map.setView([pos.lat, pos.lng], 15);
+                                } else if (map && manualZoom) {
+                                    map.panTo([pos.lat, pos.lng]);
                                 }
-                                // If route is active: don't move map, just update marker
                                 
                                 if (map) {
                                     if (userMarkerRef.current) {
@@ -1038,79 +1140,89 @@
                 }
             };
             
-            const toggleLayersPanel = () => {
-                setShowLayersPanel(!showLayersPanel);
-            };
-            
-            const calculateRoute = async (destination) => {
-                if (!userLocation || !map) {
-                    alert("Bitte aktiviere GPS um eine Route zu berechnen!");
+            // Tour Generator Functions
+            const generateTour = (duration) => {
+                if (!userLocation) {
+                    alert("Bitte aktiviere GPS um eine Tour zu erstellen!");
                     return;
                 }
                 
-                setRouteLoading(true);
+                // Calculate how many locations fit in the time
+                const walkingSpeedKmH = 5.0;
+                const avgAudioMinutes = 0.7; // ~40 seconds average
+                const bufferMultiplier = 1.3; // 30% buffer for stops, photos, etc.
                 
-                try {
-                    // OSRM - Open Source Routing Machine (completely free, no API key!)
-                    const url = `https://router.project-osrm.org/route/v1/foot/${userLocation.lng},${userLocation.lat};${destination.lng},${destination.lat}?overview=full&geometries=geojson`;
-                    
-                    const response = await fetch(url);
-                    const data = await response.json();
-                    
-                    if (data.code === 'Ok' && data.routes && data.routes[0]) {
-                        const route = data.routes[0];
-                        const coordinates = route.geometry.coordinates.map(coord => [coord[1], coord[0]]);
-                        const distance = route.distance;
-                        
-                        // Calculate walking time: average speed 5 km/h
-                        const walkingSpeedKmH = 5.0;
-                        const durationMinutes = Math.round((distance / 1000) / walkingSpeedKmH * 60);
-                        
-                        // Remove old route if exists
-                        if (routeLayerRef.current) {
-                            map.removeLayer(routeLayerRef.current);
-                        }
-                        
-                        // Draw route on map
-                        const routeLayer = L.polyline(coordinates, {
-                            color: '#4285f4',
-                            weight: 5,
-                            opacity: 0.7,
-                            lineJoin: 'round'
-                        }).addTo(map);
-                        
-                        routeLayerRef.current = routeLayer;
-                        
-                        // Fit map to show entire route
-                        map.fitBounds(routeLayer.getBounds(), { padding: [50, 50] });
-                        
-                        // Set route info
-                        setActiveRoute({
-                            distance: Math.round(distance),
-                            duration: durationMinutes,
-                            coordinates: coordinates
-                        });
-                        
-                        // Mark route as active IMMEDIATELY (ref updates synchronously!)
-                        isRouteActiveRef.current = true;
-                    } else {
-                        throw new Error('Route not found');
-                    }
-                } catch (error) {
-                    console.error('Routing error:', error);
-                    alert('Route konnte nicht berechnet werden. Bitte versuche es erneut.');
+                let numLocations;
+                if (duration <= 60) numLocations = 3; // 1h
+                else if (duration <= 120) numLocations = 5; // 2h
+                else if (duration <= 180) numLocations = 7; // 3h
+                else if (duration <= 300) numLocations = 9; // 4-5h
+                else numLocations = 11; // Full day - all locations
+                
+                // Find closest locations to user
+                const locationsWithDistance = LOCATIONS.map(loc => {
+                    const dist = calculateDistance(
+                        userLocation.lat, userLocation.lng,
+                        loc.lat, loc.lng
+                    );
+                    return { ...loc, distanceFromUser: dist };
+                });
+                
+                // Sort by distance and take the closest ones
+                const selectedLocations = locationsWithDistance
+                    .sort((a, b) => a.distanceFromUser - b.distanceFromUser)
+                    .slice(0, numLocations);
+                
+                // Start tour
+                setActiveTour({
+                    locations: selectedLocations,
+                    duration: duration,
+                    startTime: Date.now()
+                });
+                setCurrentStopIndex(0);
+                setShowTourModal(false);
+                
+                // Open first location
+                setSelectedLocation(selectedLocations[0]);
+                
+                // Center map on first location
+                if (map) {
+                    map.setView([selectedLocations[0].lat, selectedLocations[0].lng], 15);
                 }
-                
-                setRouteLoading(false);
             };
             
-            const clearRoute = () => {
-                if (routeLayerRef.current && map) {
-                    map.removeLayer(routeLayerRef.current);
-                    routeLayerRef.current = null;
+            const nextStop = () => {
+                if (!activeTour || currentStopIndex >= activeTour.locations.length - 1) {
+                    // Tour finished
+                    endTour();
+                    return;
                 }
-                setActiveRoute(null);
-                isRouteActiveRef.current = false; // Clear ref immediately
+                
+                const nextIndex = currentStopIndex + 1;
+                setCurrentStopIndex(nextIndex);
+                const nextLocation = activeTour.locations[nextIndex];
+                setSelectedLocation(nextLocation);
+                
+                // Center map on next location
+                if (map) {
+                    map.setView([nextLocation.lat, nextLocation.lng], 16);
+                }
+                
+                // Stop current audio
+                if (audioRef.current) {
+                    audioRef.current.pause();
+                    setIsPlaying(false);
+                }
+            };
+            
+            const endTour = () => {
+                setActiveTour(null);
+                setCurrentStopIndex(0);
+                setSelectedLocation(null);
+                if (audioRef.current) {
+                    audioRef.current.pause();
+                    setIsPlaying(false);
+                }
             };
             
             return (
@@ -1145,15 +1257,7 @@
                             📍
                         </button>
                         
-                        <button 
-                            className={`layers-button ${showLayersPanel ? 'active' : ''}`}
-                            onClick={toggleLayersPanel}
-                            title="Kartenebenen auswählen"
-                        >
-                            🗺️
-                        </button>
-                        
-                        <div className={`map-style-switcher ${showLayersPanel ? 'visible' : ''}`}>
+                        <div className="map-style-switcher">
                             {Object.keys(MAP_STYLES).map(styleName => (
                                 <button
                                     key={styleName}
@@ -1184,25 +1288,6 @@
                                 <h2>{selectedLocation.name}</h2>
                                 <div className="distance">{selectedLocation.description}</div>
                                 
-                                {activeRoute ? (
-                                    <div className="route-info">
-                                        <div className="route-info-text">
-                                            🚶 {activeRoute.distance}m • {activeRoute.duration} Min
-                                        </div>
-                                        <button className="clear-route-button" onClick={clearRoute}>
-                                            Route löschen
-                                        </button>
-                                    </div>
-                                ) : (
-                                    <button 
-                                        className="route-button" 
-                                        onClick={() => calculateRoute({lat: selectedLocation.lat, lng: selectedLocation.lng})}
-                                        disabled={!userLocation || routeLoading}
-                                    >
-                                        {routeLoading ? '⏳ Berechne...' : '🗺️ Route hierhin'}
-                                    </button>
-                                )}
-                                
                                 <div className="audio-player">
                                     <div className="audio-header">
                                         <div className="audio-title">🎓 Professor's Audio Guide</div>
@@ -1213,22 +1298,4 @@
                                         <button className="play-button" onClick={togglePlay}>
                                             {isPlaying ? '⏸' : '▶'}
                                         </button>
-                                    </div>
-                                    
-                                    <div className="audio-footer">
-                                        <div className="progress-bar" onClick={handleProgressClick}>
-                                            <div 
-                                                className="progress-fill" 
-                                                style={{width: `${(currentTime / duration) * 100 || 0}%`}}
-                                            ></div>
-                                        </div>
-                                        <div className="time-display">
-                                            <span>{formatTime(currentTime)}</span>
-                                            <span>{formatTime(duration)}</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <audio
-                                        ref={audioRef}
-                                        src={selectedLocation.audio}
-                
+             
