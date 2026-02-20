@@ -440,36 +440,6 @@
             50% { opacity: 0.7; }
         }
         
-        /* Debug Panel */
-        .debug-panel {
-            position: fixed;
-            bottom: 80px;
-            left: 10px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.9);
-            border: 2px solid #f39c12;
-            border-radius: 8px;
-            padding: 10px;
-            max-height: 150px;
-            overflow-y: auto;
-            z-index: 10000;
-            font-family: monospace;
-            font-size: 0.75rem;
-        }
-        
-        .debug-log-entry {
-            color: #f39c12;
-            margin: 3px 0;
-            padding: 2px 0;
-            border-bottom: 1px solid rgba(243, 156, 18, 0.2);
-        }
-        
-        .debug-panel h3 {
-            color: #e67e22;
-            font-size: 0.8rem;
-            margin-bottom: 5px;
-        }
-        
         /* GPS Button */
         .gps-button {
             position: absolute;
@@ -826,8 +796,6 @@
             const [showLayersPanel, setShowLayersPanel] = useState(false);
             const [activeRoute, setActiveRoute] = useState(null);
             const [routeLoading, setRouteLoading] = useState(false);
-            const [firstGPSLock, setFirstGPSLock] = useState(false);
-            const [debugLog, setDebugLog] = useState([]);
             
             const audioRef = useRef(null);
             const mapRef = useRef(null);
@@ -836,24 +804,13 @@
             const tileLayerRef = useRef(null);
             const userMarkerRef = useRef(null);
             const routeLayerRef = useRef(null);
-            const accuracyCirclesRef = useRef([]);
-            
-            // Debug helper
-            const addDebugLog = (message) => {
-                const timestamp = new Date().toLocaleTimeString();
-                setDebugLog(prev => [...prev.slice(-4), `${timestamp}: ${message}`]);
-            };
             
             // Initialize Map
             useEffect(() => {
                 const mapInstance = L.map(mapRef.current, {
                     center: [50.1109, 8.6821],
                     zoom: 14,
-                    zoomControl: false,
-                    trackResize: true,
-                    // Disable automatic panning
-                    autoPan: false,
-                    autoPanOnFocus: false
+                    zoomControl: false
                 });
                 
                 // Add zoom control on the right
@@ -870,25 +827,9 @@
                 tileLayerRef.current = tileLayer;
                 setMap(mapInstance);
                 
-                // DEBUG: Track when map is DRAGGED (not zoomed)
-                mapInstance.on('dragstart', (e) => {
-                    addDebugLog('🗺️ Map DRAG started (user moved map)');
-                });
-                
-                mapInstance.on('dragend', (e) => {
-                    const center = mapInstance.getCenter();
-                    const zoom = mapInstance.getZoom();
-                    addDebugLog(`📍 Map dragged to: ${center.lat.toFixed(4)}, ${center.lng.toFixed(4)}`);
-                });
-                
                 // Detect manual zoom
                 mapInstance.on('zoomstart', () => {
-                    addDebugLog('🔍 Zoom started');
-                });
-                
-                mapInstance.on('zoomend', () => {
                     setManualZoom(true);
-                    addDebugLog('🔍 Zoom ended - manual zoom detected');
                 });
                 
                 // Add markers
@@ -950,55 +891,43 @@
                                 setUserLocation(pos);
                                 setGpsActive(true);
                                 
-                                if (!map) return;
-                                
-                                // Remove old markers/circles
-                                if (userMarkerRef.current) {
-                                    map.removeLayer(userMarkerRef.current);
+                                // Only move map if NO active route
+                                if (map && !activeRoute) {
+                                    if (!manualZoom) {
+                                        map.setView([pos.lat, pos.lng], 15);
+                                    } else {
+                                        map.panTo([pos.lat, pos.lng]);
+                                    }
                                 }
+                                // If route is active: don't move map, just update marker
                                 
-                                // Remove old accuracy circles
-                                accuracyCirclesRef.current.forEach(circle => {
-                                    map.removeLayer(circle);
-                                });
-                                accuracyCirclesRef.current = [];
-                                
-                                // Add new user marker
-                                const userIcon = L.divIcon({
-                                    className: 'user-location-marker',
-                                    iconSize: [20, 20],
-                                    iconAnchor: [10, 10]
-                                });
-                                
-                                const userMarker = L.marker([pos.lat, pos.lng], {
-                                    icon: userIcon,
-                                    zIndexOffset: 1000,
-                                    autoPan: false // Don't auto-pan to this marker
-                                }).addTo(map);
-                                
-                                // Add accuracy circle
-                                const accuracyCircle = L.circle([pos.lat, pos.lng], {
-                                    radius: pos.accuracy,
-                                    fillColor: '#4285f4',
-                                    fillOpacity: 0.1,
-                                    color: '#4285f4',
-                                    weight: 1,
-                                    opacity: 0.3
-                                }).addTo(map);
-                                
-                                userMarkerRef.current = userMarker;
-                                accuracyCirclesRef.current.push(accuracyCircle);
-                                
-                                // ONLY center map on VERY FIRST GPS lock, then NEVER again!
-                                if (!firstGPSLock) {
-                                    addDebugLog('⚠️ CALLING setView - First GPS lock');
-                                    map.setView([pos.lat, pos.lng], 15);
-                                    setFirstGPSLock(true);
-                                    addDebugLog('🎯 First GPS lock - centered map');
-                                } else {
-                                    addDebugLog('✅ GPS update - NO setView called');
+                                if (map) {
+                                    if (userMarkerRef.current) {
+                                        map.removeLayer(userMarkerRef.current);
+                                    }
+                                    
+                                    const userIcon = L.divIcon({
+                                        className: 'user-location-marker',
+                                        iconSize: [20, 20],
+                                        iconAnchor: [10, 10]
+                                    });
+                                    
+                                    const userMarker = L.marker([pos.lat, pos.lng], {
+                                        icon: userIcon,
+                                        zIndexOffset: 1000
+                                    }).addTo(map);
+                                    
+                                    L.circle([pos.lat, pos.lng], {
+                                        radius: pos.accuracy,
+                                        fillColor: '#4285f4',
+                                        fillOpacity: 0.1,
+                                        color: '#4285f4',
+                                        weight: 1,
+                                        opacity: 0.3
+                                    }).addTo(map);
+                                    
+                                    userMarkerRef.current = userMarker;
                                 }
-                                // All subsequent GPS updates: NO map movement whatsoever!
                                 
                                 checkProximity(pos);
                             },
@@ -1022,7 +951,6 @@
                     }
                     setGpsActive(false);
                     setUserLocation(null);
-                    setFirstGPSLock(false); // Reset on GPS disable
                 }
             };
             
@@ -1105,11 +1033,7 @@
             
             const centerOnUser = () => {
                 if (map && userLocation) {
-                    addDebugLog('⚠️ CALLING setView - Center button clicked');
                     map.setView([userLocation.lat, userLocation.lng], 16);
-                    // Allow re-centering again if user clicks the button
-                    setFirstGPSLock(true);
-                    addDebugLog('📍 Centered on user location');
                 }
             };
             
@@ -1126,21 +1050,18 @@
                 setRouteLoading(true);
                 
                 try {
-                    // OSRM - Open Source Routing Machine (completely free, no API key!)
-                    const url = `https://router.project-osrm.org/route/v1/foot/${userLocation.lng},${userLocation.lat};${destination.lng},${destination.lat}?overview=full&geometries=geojson`;
+                    // OpenRouteService API (free tier: 2000 requests/day)
+                    const apiKey = '5b3ce3597851110001cf6248a1b0a0f7e74f4fbfb0e58f8c8e0e3e3c';
+                    const url = `https://api.openrouteservice.org/v2/directions/foot-walking?api_key=${apiKey}&start=${userLocation.lng},${userLocation.lat}&end=${destination.lng},${destination.lat}`;
                     
                     const response = await fetch(url);
                     const data = await response.json();
                     
-                    if (data.code === 'Ok' && data.routes && data.routes[0]) {
-                        const route = data.routes[0];
+                    if (data.features && data.features[0]) {
+                        const route = data.features[0];
                         const coordinates = route.geometry.coordinates.map(coord => [coord[1], coord[0]]);
-                        const distance = route.distance;
-                        
-                        // IMPORTANT: OSRM returns driving duration which is too fast!
-                        // Recalculate for walking: average speed 5 km/h
-                        const walkingSpeedKmH = 5.0;
-                        const durationMinutes = Math.round((distance / 1000) / walkingSpeedKmH * 60);
+                        const distance = route.properties.segments[0].distance;
+                        const duration = route.properties.segments[0].duration;
                         
                         // Remove old route if exists
                         if (routeLayerRef.current) {
@@ -1151,25 +1072,20 @@
                         const routeLayer = L.polyline(coordinates, {
                             color: '#4285f4',
                             weight: 5,
-                            opacity: 0.7,
-                            lineJoin: 'round'
+                            opacity: 0.7
                         }).addTo(map);
                         
                         routeLayerRef.current = routeLayer;
                         
                         // Fit map to show entire route
-                        addDebugLog('⚠️ CALLING fitBounds - showing route');
                         map.fitBounds(routeLayer.getBounds(), { padding: [50, 50] });
-                        addDebugLog('🗺️ Route calculated - map fitted to bounds');
                         
                         // Set route info
                         setActiveRoute({
                             distance: Math.round(distance),
-                            duration: durationMinutes,
+                            duration: Math.round(duration / 60),
                             coordinates: coordinates
                         });
-                    } else {
-                        throw new Error('Route not found');
                     }
                 } catch (error) {
                     console.error('Routing error:', error);
@@ -1312,8 +1228,12 @@
                                 </div>
                             </div>
                         )}
-                        
-                        {/* Debug Panel */}
-                        {debugLog.length > 0 && (
-                            <div className="debug-panel">
-                   
+                    </div>
+                </React.Fragment>
+            );
+        }
+        
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
