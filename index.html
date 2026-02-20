@@ -652,21 +652,59 @@
             transform: scale(0.95);
         }
         
-        /* Map Style Switcher */
-        .map-style-switcher {
+        /* Layers Toggle Button */
+        .layers-button {
             position: absolute;
             top: 308px;
             right: 10px;
+            width: 44px;
+            height: 44px;
             background: rgba(44, 24, 16, 0.95);
             border: 2px solid #c9a961;
             border-radius: 8px;
-            padding: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.4);
             z-index: 998;
+            transition: all 0.3s ease;
+        }
+        
+        .layers-button:hover {
+            background: rgba(201, 169, 97, 0.3);
+        }
+        
+        .layers-button.active {
+            background: rgba(201, 169, 97, 0.4);
+        }
+        
+        /* Map Style Switcher */
+        .map-style-switcher {
+            position: absolute;
+            top: 362px;
+            right: 10px;
+            background: rgba(44, 24, 16, 0.98);
+            border: 2px solid #c9a961;
+            border-radius: 8px;
+            padding: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+            z-index: 999;
             display: flex;
             flex-direction: column;
             gap: 6px;
             max-width: 150px;
+            opacity: 0;
+            transform: translateX(10px);
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        
+        .map-style-switcher.visible {
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: all;
         }
         
         .style-button {
@@ -743,10 +781,18 @@
                 font-size: 20px;
             }
             
-            .map-style-switcher {
-                top: 290px;
+            .layers-button {
+                top: 286px;
                 right: 8px;
-                padding: 5px;
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+            
+            .map-style-switcher {
+                top: 332px;
+                right: 8px;
+                padding: 6px;
                 gap: 5px;
                 max-width: 130px;
             }
@@ -901,6 +947,7 @@
             const [duration, setDuration] = useState(0);
             const [currentMapStyle, setCurrentMapStyle] = useState('standard');
             const [manualZoom, setManualZoom] = useState(false);
+            const [showLayersPanel, setShowLayersPanel] = useState(false);
             const [showTourModal, setShowTourModal] = useState(false);
             const [activeTour, setActiveTour] = useState(null);
             const [currentStopIndex, setCurrentStopIndex] = useState(0);
@@ -1125,6 +1172,10 @@
                 }
             };
             
+            const toggleLayersPanel = () => {
+                setShowLayersPanel(!showLayersPanel);
+            };
+            
             // Helper function - calculate distance between two points
             const calculateDistance = (lat1, lon1, lat2, lon2) => {
                 const R = 6371e3;
@@ -1258,7 +1309,15 @@
                             📍
                         </button>
                         
-                        <div className="map-style-switcher">
+                        <button 
+                            className={`layers-button ${showLayersPanel ? 'active' : ''}`}
+                            onClick={toggleLayersPanel}
+                            title="Kartenebenen auswählen"
+                        >
+                            🗺️
+                        </button>
+                        
+                        <div className={`map-style-switcher ${showLayersPanel ? 'visible' : ''}`}>
                             {Object.keys(MAP_STYLES).map(styleName => (
                                 <button
                                     key={styleName}
