@@ -1,0 +1,102 @@
+{
+  "Römerberg|Frankfurt": {
+    "lat": 50.1102096,
+    "lng": 8.6821665,
+    "displayName": "Römerberg, Altstadt, Innenstadt 1, Frankfurt am Main, Hessen, 60311, Deutschland"
+  },
+  "Frankfurt Cathedral|Frankfurt": {
+    "lat": 50.1106666,
+    "lng": 8.6853436,
+    "displayName": "Kaiserdom St. Bartholomäus, 1, Domplatz, Altstadt, Innenstadt 1, Frankfurt am Main, Hessen, 60311, Deutschland"
+  },
+  "St. Paul's Church|Frankfurt": {
+    "lat": 50.1111734,
+    "lng": 8.680755,
+    "displayName": "Paulskirche, 11, Paulsplatz, Altstadt, Innenstadt 1, Frankfurt am Main, Hessen, 60311, Deutschland"
+  },
+  "Old Opera House|Frankfurt": {
+    "lat": 32.0886442,
+    "lng": 34.7747467,
+    "displayName": "פרנקפורט, תל־אביב–יפו, הצפון הישן - החלק הצפוני, תל־אביב–יפו, נפת תל אביב, מחוז תל אביב, 6340502, ישראל"
+  },
+  "Goethe House|Frankfurt": {
+    "lat": 50.1112009,
+    "lng": 8.6775928,
+    "displayName": "Goethe-Haus, 23-25, Großer Hirschgraben, Innenstadt, Innenstadt 1, Frankfurt am Main, Hessen, 60311, Deutschland"
+  },
+  "Eschenheimer Tower|Frankfurt": {
+    "lat": 50.1184786,
+    "lng": 8.683182,
+    "displayName": "Eschenheimer Anlage, Innenstadt, Innenstadt 1, Frankfurt am Main, Hessen, 60313, Deutschland"
+  },
+  "Kleinmarkthalle|Frankfurt": {
+    "lat": 50.1127197,
+    "lng": 8.6830441,
+    "displayName": "Kleinmarkthalle, 5-7, Hasengasse, Altstadt, Innenstadt 1, Frankfurt am Main, Hessen, 60311, Deutschland"
+  },
+  "Haus Wertheim|Frankfurt": {
+    "lat": 50.1094506,
+    "lng": 8.6819431,
+    "displayName": "Haus Wertheym, 1, Fahrtor, Altstadt, Innenstadt 1, Frankfurt am Main, Hessen, 60311, Deutschland"
+  },
+  "Main Tower|Frankfurt": {
+    "lat": 50.1125418,
+    "lng": 8.6721959,
+    "displayName": "Main Tower, 52-58, Neue Mainzer Straße, Innenstadt, Innenstadt 1, Frankfurt am Main, Hessen, 60311, Deutschland"
+  },
+  "Palmengarten|Frankfurt": {
+    "lat": 50.1236712,
+    "lng": 8.6559598,
+    "displayName": "Palmengarten, Westend Süd, Innenstadt 2, Frankfurt am Main, Hessen, 60323, Deutschland"
+  },
+  "Senckenberg Natural History Museum|Frankfurt": {
+    "lat": 50.1175421,
+    "lng": 8.6516651,
+    "displayName": "Senckenberg Naturmuseum, 25, Senckenberganlage, Westend Süd, Innenstadt 2, Frankfurt am Main, Hessen, 60325, Deutschland"
+  },
+  "Historical Museum Frankfurt|Frankfurt": {
+    "lat": 50.1096033,
+    "lng": 8.682443,
+    "displayName": "Historisches Museum Frankfurt, 2, Fahrtor, Altstadt, Innenstadt 1, Frankfurt am Main, Hessen, 60311, Deutschland"
+  },
+  "Städel Museum|Frankfurt": {
+    "lat": 50.1032949,
+    "lng": 8.6738582,
+    "displayName": "Städel Museum, 63, Schaumainkai, Nord, Sachsenhausen, Süd, Frankfurt am Main, Hessen, 60596, Deutschland"
+  },
+  "Frankfurt Stock Exchange|Frankfurt": {
+    "lat": 50.1152663,
+    "lng": 8.6773068,
+    "displayName": "Frankfurter Wertpapierbörse, 4, Börsenplatz, Innenstadt, Innenstadt 1, Frankfurt am Main, Hessen, 60313, Deutschland"
+  },
+  "Zeil & Skyline Plaza|Frankfurt": {
+    "lat": 50.1144314,
+    "lng": 8.6829851,
+    "displayName": "Zeil, Innenstadt, Innenstadt 1, Frankfurt am Main, Hessen, 60313, Deutschland"
+  },
+  "Hauptwache & Katharinenkirche|Frankfurt": {
+    "lat": 50.1138071,
+    "lng": 8.6791483,
+    "displayName": "Hauptwache, Innenstadt, Innenstadt 1, Frankfurt am Main, Hessen, 60313, Deutschland"
+  },
+  "European Central Bank|Frankfurt": {
+    "lat": 50.1096282,
+    "lng": 8.7029232,
+    "displayName": "Europäische Zentralbank, 20, Sonnemannstraße, Ostend, Bornheim/Ostend, Frankfurt am Main, Hessen, 60314, Deutschland"
+  },
+  "Alte Nikolaikirche|Frankfurt": {
+    "lat": 50.1099714,
+    "lng": 8.6823634,
+    "displayName": "Alte Nikolaikirche, Saalgasse, Altstadt, Innenstadt 1, Frankfurt am Main, Hessen, 60311, Deutschland"
+  },
+  "Opernplatz & Opernturm|Frankfurt": {
+    "lat": 50.1156507,
+    "lng": 8.6723655,
+    "displayName": "Opernplatz, Innenstadt, Innenstadt 1, Frankfurt am Main, Hessen, 60313, Deutschland"
+  },
+  "Höchst Old Town & Palace|Frankfurt": {
+    "lat": 50.099466,
+    "lng": 8.5452563,
+    "displayName": "Höchst, West, Frankfurt am Main, Hessen, Deutschland"
+  }
+}

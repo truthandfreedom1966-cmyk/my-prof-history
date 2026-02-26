@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Georgia, serif;
+  background: linear-gradient(135deg, #2c1810 0%, #1a0f0a 100%);
+  color: #f4e4c1;
+  overflow: hidden;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(201, 169, 97, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c9a961;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d4af37;
+}
+
+/* Leaflet marker popup adjustments */
+.leaflet-popup-content-wrapper {
+  background: rgba(26, 15, 10, 0.95);
+  border: 2px solid #c9a961;
+  color: #f4e4c1;
+  font-family: Georgia, serif;
+}
+
+.leaflet-popup-tip {
+  background: rgba(26, 15, 10, 0.95);
+}
+
+.leaflet-popup-close-button {
+  color: #c9a961 !important;
+}

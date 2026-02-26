@@ -1,0 +1,19 @@
+{
+  "cities": [
+    {
+      "id": "frankfurt",
+      "name": {
+        "en": "Frankfurt",
+        "de": "Frankfurt"
+      },
+      "country": "Germany",
+      "center": {
+        "lat": 50.1109,
+        "lng": 8.6821
+      },
+      "zoom": 14,
+      "placesFile": "/data/places.frankfurt.json",
+      "enabled": true
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "frankfurt-007": {
+    "lat": 50.10430,
+    "lng": 8.67640,
+    "reason": "Museumsufer: Schaumainkai south bank (Nominatim may return river center)"
+  },
+  "frankfurt-005": {
+    "lat": 50.10790,
+    "lng": 8.68370,
+    "reason": "Eiserner Steg: Midpoint of footbridge (Nominatim may return imprecise result)"
+  },
+  "frankfurt-018": {
+    "lat": 50.11830,
+    "lng": 8.69580,
+    "reason": "Berger Strasse: Representative midpoint near Merianplatz/Uhrtuermchen area"
+  }
+}
