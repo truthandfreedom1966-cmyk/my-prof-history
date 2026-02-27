@@ -74,8 +74,7 @@
       "audio": { "en": "/assets/audio/06_The Goethe_House_EN.mp3", "de": "/assets/audio/06_The Goethe_House_EN.mp3" }
     },
 
-    /* --- alle weiteren Orte bleiben unverändert --- */
-
+    
     {
       "id": "frankfurt-023",
       "title": { "en": "Höchst Old Town & Palace", "de": "Höchster Altstadt & Schloss" },
