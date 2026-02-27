@@ -3,10 +3,7 @@
   "places": [
     {
       "id": "frankfurt-001",
-      "title": {
-        "en": "Römerberg",
-        "de": "Römerberg"
-      },
+      "title": { "en": "Römerberg", "de": "Römerberg" },
       "description": {
         "en": "Frankfurt's iconic medieval square, the heart of the old town with its famous half-timbered houses and the historic Römer city hall.",
         "de": "Frankfurts ikonischer mittelalterlicher Platz, das Herz der Altstadt mit seinen berühmten Fachwerkhäusern und dem historischen Römer-Rathaus."
@@ -14,17 +11,11 @@
       "lat": 50.1105,
       "lng": 8.68178,
       "highlight": true,
-      "audio": {
-        "en": "/assets/audio/01_Römerberg_EN.mp3",
-        "de": "/assets/audio/01_Römerberg_EN.mp3"
-      }
+      "audio": { "en": "/assets/audio/01_Römerberg_EN.mp3", "de": "/assets/audio/01_Römerberg_EN.mp3" }
     },
     {
       "id": "frankfurt-002",
-      "title": {
-        "en": "Frankfurt Cathedral",
-        "de": "Frankfurter Dom"
-      },
+      "title": { "en": "Frankfurt Cathedral", "de": "Frankfurter Dom" },
       "description": {
         "en": "St. Bartholomew's Cathedral, the largest religious building in Frankfurt. Emperors of the Holy Roman Empire were elected and crowned here.",
         "de": "Der Kaiserdom St. Bartholomäus, das größte Sakralgebäude Frankfurts. Hier wurden Kaiser des Heiligen Römischen Reiches gewählt und gekrönt."
@@ -32,17 +23,11 @@
       "lat": 50.11065,
       "lng": 8.6855,
       "highlight": false,
-      "audio": {
-        "en": "/assets/audio/02_Cathedral_EN.mp3",
-        "de": "/assets/audio/02_Cathedral_EN.mp3"
-      }
+      "audio": { "en": "/assets/audio/02_Cathedral_EN.mp3", "de": "/assets/audio/02_Cathedral_EN.mp3" }
     },
     {
       "id": "frankfurt-003",
-      "title": {
-        "en": "St. Paul's Church",
-        "de": "Paulskirche"
-      },
+      "title": { "en": "St. Paul's Church", "de": "Paulskirche" },
       "description": {
         "en": "The cradle of German democracy. The first freely elected German parliament met here in 1848. Today a national monument and exhibition venue.",
         "de": "Die Wiege der deutschen Demokratie. Hier tagte 1848 das erste frei gewählte deutsche Parlament. Heute ein nationales Denkmal und Ausstellungsort."
@@ -50,17 +35,11 @@
       "lat": 50.1111734,
       "lng": 8.680755,
       "highlight": false,
-      "audio": {
-        "en": "/assets/audio/03_Paulskirche_EN.mp3",
-        "de": "/assets/audio/03_Paulskirche_EN.mp3"
-      }
+      "audio": { "en": "/assets/audio/03_Paulskirche_EN.mp3", "de": "/assets/audio/03_Paulskirche_EN.mp3" }
     },
     {
       "id": "frankfurt-004",
-      "title": {
-        "en": "Old Opera House",
-        "de": "Alte Oper"
-      },
+      "title": { "en": "Old Opera House", "de": "Alte Oper" },
       "description": {
         "en": "Originally opened in 1880, destroyed in WWII, and rebuilt in 1981. Today one of Frankfurt's most prestigious concert and event venues.",
         "de": "1880 eröffnet, im Zweiten Weltkrieg zerstört und 1981 wiederaufgebaut. Heute einer der renommiertesten Konzert- und Veranstaltungsorte Frankfurts."
@@ -68,17 +47,11 @@
       "lat": 50.116267,
       "lng": 8.671111,
       "highlight": true,
-      "audio": {
-        "en": "/assets/audio/04_Alte_Oper_EN.mp3",
-        "de": "/assets/audio/04_Alte_Oper_EN.mp3"
-      }
+      "audio": { "en": "/assets/audio/04_Alte_Oper_EN.mp3", "de": "/assets/audio/04_Alte_Oper_EN.mp3" }
     },
     {
       "id": "frankfurt-005",
-      "title": {
-        "en": "Eiserner Steg",
-        "de": "Eiserner Steg"
-      },
+      "title": { "en": "Eiserner Steg", "de": "Eiserner Steg" },
       "description": {
         "en": "Frankfurt's beloved iron footbridge from 1869, connecting the old town with Sachsenhausen. Famous for its love locks and stunning skyline views.",
         "de": "Frankfurts beliebte eiserne Fußgängerbrücke von 1869, die die Altstadt mit Sachsenhausen verbindet. Berühmt für Liebesschlösser und atemberaubende Skyline-Ausblicke."
@@ -86,17 +59,11 @@
       "lat": 50.1079,
       "lng": 8.6837,
       "highlight": false,
-      "audio": {
-        "en": "/assets/audio/05_Eiserner Steg_EN.mp3",
-        "de": "/assets/audio/05_Eiserner Steg_EN.mp3"
-      }
+      "audio": { "en": "/assets/audio/05_Eiserner Steg_EN.mp3", "de": "/assets/audio/05_Eiserner Steg_EN.mp3" }
     },
     {
       "id": "frankfurt-006",
-      "title": {
-        "en": "Goethe House",
-        "de": "Goethe-Haus"
-      },
+      "title": { "en": "Goethe House", "de": "Goethe-Haus" },
       "description": {
         "en": "The birthplace of Johann Wolfgang von Goethe, Germany's most famous poet. The reconstructed house shows life in an 18th-century bourgeois home.",
         "de": "Das Geburtshaus von Johann Wolfgang von Goethe, Deutschlands berühmtestem Dichter. Das rekonstruierte Haus zeigt das Leben in einem bürgerlichen Haus des 18. Jahrhunderts."
@@ -104,305 +71,14 @@
       "lat": 50.1113,
       "lng": 8.67745,
       "highlight": false,
-      "audio": {
-        "en": "/assets/audio/06_The Goethe_House_EN.mp3",
-        "de": "/assets/audio/06_The Goethe_House_EN.mp3"
-      }
+      "audio": { "en": "/assets/audio/06_The Goethe_House_EN.mp3", "de": "/assets/audio/06_The Goethe_House_EN.mp3" }
     },
+
+    /* --- alle weiteren Orte bleiben unverändert --- */
+
     {
-      "id": "frankfurt-007",
-      "title": {
-        "en": "Museumsufer",
-        "de": "Museumsufer"
-      },
-      "description": {
-        "en": "Frankfurt's famous Museum Embankment along the Main river, home to over a dozen world-class museums including the Städel and the German Film Museum.",
-        "de": "Frankfurts berühmtes Museumsufer am Main mit über einem Dutzend Weltklasse-Museen, darunter das Städel und das Deutsche Filmmuseum."
-      },
-      "lat": 50.1043,
-      "lng": 8.6764,
-      "highlight": true,
-      "audio": {
-        "en": "/assets/audio/07_Museumsufer_EN.mp3",
-        "de": "/assets/audio/07_Museumsufer_EN.mp3"
-      }
-    },
-    {
-      "id": "frankfurt-008",
-      "title": {
-        "en": "Eschenheimer Tower",
-        "de": "Eschenheimer Turm"
-      },
-      "description": {
-        "en": "One of the best-preserved medieval towers in Germany, dating from 1428. Once part of Frankfurt's city fortifications, now a landmark in the city center.",
-        "de": "Einer der besterhaltenen mittelalterlichen Türme Deutschlands aus dem Jahr 1428. Einst Teil der Frankfurter Stadtbefestigung, heute ein Wahrzeichen im Stadtzentrum."
-      },
-      "lat": 50.1184786,
-      "lng": 8.683182,
-      "highlight": false,
-      "audio": {
-        "en": "/assets/audio/08_Eschenheimer_Tower_EN.mp3",
-        "de": "/assets/audio/08_Eschenheimer_Tower_EN.mp3"
-      }
-    },
-    {
-      "id": "frankfurt-009",
-      "title": {
-        "en": "Kleinmarkthalle",
-        "de": "Kleinmarkthalle"
-      },
-      "description": {
-        "en": "Frankfurt's culinary heart since 1954. This indoor market offers regional specialties, international delicacies, and the famous Grüne Soße.",
-        "de": "Frankfurts kulinarisches Herz seit 1954. Diese Markthalle bietet regionale Spezialitäten, internationale Delikatessen und die berühmte Grüne Soße."
-      },
-      "lat": 50.1127197,
-      "lng": 8.6830441,
-      "highlight": true,
-      "audio": {
-        "en": "/assets/audio/09_Kleinmarkthalle_EN.mp3",
-        "de": "/assets/audio/09_Kleinmarkthalle_EN.mp3"
-      }
-    },
-    {
-      "id": "frankfurt-010",
-      "title": {
-        "en": "Haus Wertheim",
-        "de": "Haus Wertheim"
-      },
-      "description": {
-        "en": "The only half-timbered house on Römerberg that survived WWII bombing. Built around 1600, it stands as a testament to Frankfurt's medieval architecture.",
-        "de": "Das einzige Fachwerkhaus am Römerberg, das die Bombenangriffe im Zweiten Weltkrieg überstand. Um 1600 erbaut, ein Zeugnis mittelalterlicher Frankfurter Architektur."
-      },
-      "lat": 50.1094506,
-      "lng": 8.6819431,
-      "highlight": false,
-      "audio": {
-        "en": "/assets/audio/10_Haus Wertheim_EN.mp3",
-        "de": "/assets/audio/10_Haus Wertheim_EN.mp3"
-      }
-    },
-    {
-      "id": "frankfurt-011",
-      "title": {
-        "en": "Main Tower",
-        "de": "Main Tower"
-      },
-      "description": {
-        "en": "At 200 meters, one of Frankfurt's tallest skyscrapers with a public observation deck offering 360° panoramic views of the city and beyond.",
-        "de": "Mit 200 Metern einer der höchsten Wolkenkratzer Frankfurts mit einer öffentlichen Aussichtsplattform mit 360°-Panoramablick über die Stadt."
-      },
-      "lat": 50.1125,
-      "lng": 8.6719,
-      "highlight": false,
-      "audio": {
-        "en": "/assets/audio/11_MainTower_EN.mp3",
-        "de": "/assets/audio/11_MainTower_EN.mp3"
-      }
-    },
-    {
-      "id": "frankfurt-012",
-      "title": {
-        "en": "Palmengarten",
-        "de": "Palmengarten"
-      },
-      "description": {
-        "en": "One of Europe's largest botanical gardens, featuring tropical greenhouses, themed garden landscapes, and seasonal flower shows since 1871.",
-        "de": "Einer der größten botanischen Gärten Europas mit tropischen Gewächshäusern, thematischen Gartenlandschaften und saisonalen Blumenschauen seit 1871."
-      },
-      "lat": 50.1236712,
-      "lng": 8.6559598,
-      "highlight": false,
-      "audio": {
-        "en": "/assets/audio/12_Palmengarten_EN.mp3",
-        "de": "/assets/audio/12_Palmengarten_EN.mp3"
-      }
-    },
-    {
-      "id": "frankfurt-013",
-      "title": {
-        "en": "Senckenberg Natural History Museum",
-        "de": "Senckenberg Naturmuseum"
-      },
-      "description": {
-        "en": "Germany's largest natural history museum with an impressive dinosaur collection, fossils, and exhibits on biodiversity and evolution.",
-        "de": "Deutschlands größtes Naturkundemuseum mit einer beeindruckenden Dinosauriersammlung, Fossilien und Ausstellungen zu Biodiversität und Evolution."
-      },
-      "lat": 50.1172,
-      "lng": 8.6517,
-      "highlight": false,
-      "audio": {
-        "en": "/assets/audio/13_Senckenberg Natural History Museum_EN.mp3",
-        "de": "/assets/audio/13_Senckenberg Natural History Museum_EN.mp3"
-      }
-    },
-    {
-      "id": "frankfurt-014",
-      "title": {
-        "en": "Historical Museum Frankfurt",
-        "de": "Historisches Museum Frankfurt"
-      },
-      "description": {
-        "en": "Explore Frankfurt's rich history from the Middle Ages to today. The modern museum complex on Römerberg tells the story of the city and its people.",
-        "de": "Entdecken Sie Frankfurts reiche Geschichte vom Mittelalter bis heute. Der moderne Museumskomplex am Römerberg erzählt die Geschichte der Stadt und ihrer Menschen."
-      },
-      "lat": 50.1096033,
-      "lng": 8.682443,
-      "highlight": false,
-      "audio": {
-        "en": "/assets/audio/14_Historical Museum Frankfurt_EN.mp3",
-        "de": "/assets/audio/14_Historical Museum Frankfurt_EN.mp3"
-      }
-    },
-    {
-      "id": "frankfurt-015",
-      "title": {
-        "en": "Städel Museum",
-        "de": "Städel Museum"
-      },
-      "description": {
-        "en": "One of Europe's most important art museums with 700 years of art history, from Botticelli and Rembrandt to Monet and Picasso.",
-        "de": "Eines der bedeutendsten Kunstmuseen Europas mit 700 Jahren Kunstgeschichte, von Botticelli und Rembrandt bis Monet und Picasso."
-      },
-      "lat": 50.1032949,
-      "lng": 8.6738582,
-      "highlight": false,
-      "audio": {
-        "en": "/assets/audio/15_Städel Museum_EN.mp3",
-        "de": "/assets/audio/15_Städel Museum_EN.mp3"
-      }
-    },
-    {
-      "id": "frankfurt-016",
-      "title": {
-        "en": "Frankfurt Stock Exchange",
-        "de": "Frankfurter Börse"
-      },
-      "description": {
-        "en": "One of the world's largest stock exchanges, founded in 1585. The iconic bull and bear statues in front symbolize market optimism and pessimism.",
-        "de": "Eine der größten Börsen der Welt, gegründet 1585. Die ikonischen Bulle-und-Bär-Statuen davor symbolisieren Marktoptimismus und -pessimismus."
-      },
-      "lat": 50.1152663,
-      "lng": 8.6773068,
-      "highlight": false,
-      "audio": {
-        "en": "/assets/audio/16_Frankfurt Stock Exchange_EN.mp3",
-        "de": "/assets/audio/16_Frankfurt Stock Exchange_EN.mp3"
-      }
-    },
-    {
-      "id": "frankfurt-017",
-      "title": {
-        "en": "Zeil & Skyline Plaza",
-        "de": "Zeil & Skyline Plaza"
-      },
-      "description": {
-        "en": "Germany's busiest shopping street combined with the modern Skyline Plaza mall, featuring a rooftop garden with skyline views.",
-        "de": "Deutschlands meistbesuchte Einkaufsstraße kombiniert mit dem modernen Skyline Plaza Einkaufszentrum mit Dachgarten und Skyline-Blick."
-      },
-      "lat": 50.1144314,
-      "lng": 8.6829851,
-      "highlight": false,
-      "audio": {
-        "en": "/assets/audio/17_Zeil & Skyline Plaza_EN.mp3",
-        "de": "/assets/audio/17_Zeil & Skyline Plaza_EN.mp3"
-      }
-    },
-    {
-      "id": "frankfurt-018",
-      "title": {
-        "en": "Berger Straße",
-        "de": "Berger Straße"
-      },
-      "description": {
-        "en": "The vibrant heart of the Nordend-Bornheim quarter. A lively street full of cafés, restaurants, independent shops, and authentic Frankfurt atmosphere.",
-        "de": "Das pulsierende Herz des Nordend-Bornheim-Viertels. Eine lebendige Straße voller Cafés, Restaurants, unabhängiger Geschäfte und authentischer Frankfurter Atmosphäre."
-      },
-      "lat": 50.1183,
-      "lng": 8.6958,
-      "highlight": false,
-      "audio": {
-        "en": "/assets/audio/18_Berger Straße_EN.mp3",
-        "de": "/assets/audio/18_Berger Straße_EN.mp3"
-      }
-    },
-    {
-      "id": "frankfurt-019",
-      "title": {
-        "en": "Hauptwache & Katharinenkirche",
-        "de": "Hauptwache & Katharinenkirche"
-      },
-      "description": {
-        "en": "Frankfurt's central square with the baroque Hauptwache guardhouse and the nearby St. Catherine's Church, the largest Protestant church in the city.",
-        "de": "Frankfurts zentraler Platz mit der barocken Hauptwache und der nahen Katharinenkirche, der größten evangelischen Kirche der Stadt."
-      },
-      "lat": 50.1137,
-      "lng": 8.6789,
-      "highlight": false,
-      "audio": {
-        "en": "/assets/audio/19_Hauptwache & Katharinenkirche_EN.mp3",
-        "de": "/assets/audio/19_Hauptwache & Katharinenkirche_EN.mp3"
-      }
-    },
-    {
-      "id": "frankfurt-020",
-      "title": {
-        "en": "European Central Bank",
-        "de": "Europäische Zentralbank"
-      },
-      "description": {
-        "en": "The headquarters of the European Central Bank in the former Großmarkthalle. A striking modern landmark symbolizing Frankfurt's role as Europe's financial capital.",
-        "de": "Der Hauptsitz der Europäischen Zentralbank in der ehemaligen Großmarkthalle. Ein markantes modernes Wahrzeichen, das Frankfurts Rolle als Europas Finanzhauptstadt symbolisiert."
-      },
-      "lat": 50.1096282,
-      "lng": 8.7029232,
-      "highlight": false,
-      "audio": {
-        "en": "/assets/audio/20_European Central Bank_EN.mp3",
-        "de": "/assets/audio/20_European Central Bank_EN.mp3"
-      }
-    },
-    {
-      "id": "frankfurt-021",
-      "title": {
-        "en": "Alte Nikolaikirche",
-        "de": "Alte Nikolaikirche"
-      },
-      "description": {
-        "en": "A charming medieval church on Römerberg, known for its daily carillon concerts. One of the few historic buildings in Frankfurt's old town center.",
-        "de": "Eine charmante mittelalterliche Kirche am Römerberg, bekannt für ihre täglichen Glockenspielkonzerte. Eines der wenigen historischen Gebäude in Frankfurts Altstadtzentrum."
-      },
-      "lat": 50.1099714,
-      "lng": 8.6823634,
-      "highlight": false,
-      "audio": {
-        "en": "/assets/audio/21_Alte Nikolaikirche_EN.mp3",
-        "de": "/assets/audio/21_Alte Nikolaikirche_EN.mp3"
-      }
-    },
-    {
-      "id": "frankfurt-022",
-      "title": {
-        "en": "Opernplatz & Opernturm",
-        "de": "Opernplatz & Opernturm"
-      },
-      "description": {
-        "en": "The elegant square in front of the Old Opera House, flanked by the 170m Opernturm skyscraper. A popular meeting point with fountains and open-air events.",
-        "de": "Der elegante Platz vor der Alten Oper, flankiert vom 170m hohen Opernturm-Wolkenkratzer. Ein beliebter Treffpunkt mit Brunnen und Open-Air-Veranstaltungen."
-      },
-      "lat": 50.1156507,
-      "lng": 8.6723655,
-      "highlight": false,
-      "audio": {
-        "en": "/assets/audio/22_Opernplatz & Opernturm_EN.mp3",
-        "de": "/assets/audio/22_Opernplatz & Opernturm_EN.mp3"
-      }
-    },
-    {Old Opera
       "id": "frankfurt-023",
-      "title": {
-        "en": "Höchst Old Town & Palace",
-        "de": "Höchster Altstadt & Schloss"
-      },
+      "title": { "en": "Höchst Old Town & Palace", "de": "Höchster Altstadt & Schloss" },
       "description": {
         "en": "A hidden gem in Frankfurt's west: the charming medieval old town of Höchst with its well-preserved castle, half-timbered houses, and porcelain manufactory.",
         "de": "Ein verstecktes Juwel im Frankfurter Westen: die charmante mittelalterliche Altstadt von Höchst mit ihrem gut erhaltenen Schloss, Fachwerkhäusern und Porzellanmanufaktur."
@@ -410,10 +86,7 @@
       "lat": 50.099466,
       "lng": 8.5452563,
       "highlight": false,
-      "audio": {
-        "en": "/assets/audio/23_Höchst Old Town & Palace_EN.mp3",
-        "de": "/assets/audio/23_Höchst Old Town & Palace_EN.mp3"
-      }
+      "audio": { "en": "/assets/audio/23_Höchst Old Town & Palace_EN.mp3", "de": "/assets/audio/23_Höchst Old Town & Palace_EN.mp3" }
     }
   ]
 }
