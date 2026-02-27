@@ -65,8 +65,8 @@
         "en": "Originally opened in 1880, destroyed in WWII, and rebuilt in 1981. Today one of Frankfurt's most prestigious concert and event venues.",
         "de": "1880 eröffnet, im Zweiten Weltkrieg zerstört und 1981 wiederaufgebaut. Heute einer der renommiertesten Konzert- und Veranstaltungsorte Frankfurts."
       },
-      "lat": 32.0886442,
-      "lng": 34.7747467,
+      "lat": 50.116267,
+      "lng": 8.671111,
       "highlight": true,
       "audio": {
         "en": "/assets/audio/04_Alte_Oper_EN.mp3",
@@ -397,7 +397,7 @@
         "de": "/assets/audio/22_Opernplatz & Opernturm_EN.mp3"
       }
     },
-    {
+    {Old Opera
       "id": "frankfurt-023",
       "title": {
         "en": "Höchst Old Town & Palace",
